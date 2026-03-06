@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>YETI South Korea — The Case</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;700&family=Playfair+Display:wght@900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#020817;color:#e2e8f0;font-family:'Source Serif 4',Georgia,serif;min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#0f172a}::-webkit-scrollbar-thumb{background:#1e293b;border-radius:3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── NAV ── */
+.nav{background:#0a0f1e;border-bottom:1px solid #1e293b;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.nav-back{font-family:'DM Mono',monospace;font-size:12px;color:#475569;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+.nav-back:hover{color:#94a3b8}
+.nav-title{font-family:'DM Mono',monospace;font-size:10px;color:#334155;letter-spacing:.12em;text-transform:uppercase}
+.nav-next{font-family:'DM Mono',monospace;font-size:12px;color:#8b5cf6;text-decoration:none;display:flex;align-items:center;gap:6px;background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);border-radius:7px;padding:7px 14px;transition:all .2s}
+.nav-next:hover{background:rgba(139,92,246,.2)}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#0f172a,#1a0e0a);border-bottom:1px solid #1e293b;padding:40px 0 32px}
+.hero-in{max-width:760px;margin:0 auto;padding:0 28px}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;color:#f59e0b;letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,40px);font-weight:900;color:#f8fafc;line-height:1.1;margin-bottom:10px}
+.hero-sub{font-size:15px;color:#94a3b8;font-style:italic;line-height:1.65;margin-bottom:20px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.04);border:1px solid #334155;color:#94a3b8;font-size:11px;padding:3px 12px;border-radius:20px;font-family:'DM Mono',monospace}
+
+/* ── BODY ── */
+.body{max-width:760px;margin:0 auto;padding:36px 28px 80px;animation:fadeUp .4s ease}
+
+/* Context section */
+.context-box{background:#0f172a;border:1px solid #1e293b;border-radius:14px;padding:26px 28px;margin-bottom:28px}
+.ctx-label{font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f59e0b;margin-bottom:14px}
+.ctx-body{font-size:15px;color:#94a3b8;line-height:1.85}
+.ctx-body strong{color:#e2e8f0;font-weight:600}
+
+/* Plan table */
+.plan-head{font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b82f6;margin-bottom:14px}
+.plan-items{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.plan-item{background:#0f172a;border:1px solid #1e293b;border-radius:12px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s}
+.plan-item:hover{border-color:#334155}
+.plan-num{font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:#3b82f6;min-width:20px;padding-top:2px}
+.plan-item-body{}
+.plan-item-title{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;color:#60a5fa;letter-spacing:.06em;margin-bottom:5px}
+.plan-item-desc{font-size:14px;color:#cbd5e1;line-height:1.7}
+.plan-item-quote{font-size:13px;color:#475569;font-style:italic;margin-top:5px}
+
+/* Conflict box */
+.conflict{background:#1a0a00;border:1px solid rgba(245,158,11,.25);border-radius:14px;padding:22px 24px;margin-bottom:32px}
+.conflict-label{font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f59e0b;margin-bottom:12px}
+.conflict-body{font-size:14px;color:#fcd34d;line-height:1.8;font-style:italic}
+
+/* Think-about */
+.think{margin-bottom:32px}
+.think-label{font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8b5cf6;margin-bottom:14px}
+.think-items{display:flex;flex-direction:column;gap:8px}
+.think-item{background:#0c0f1e;border:1px solid #1e293b;border-radius:10px;padding:14px 18px;font-size:14px;color:#94a3b8;line-height:1.65;display:flex;gap:12px}
+.think-q{color:#8b5cf6;font-weight:600;flex-shrink:0}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#0f172a,#1e1033);border:1px solid rgba(139,92,246,.25);border-radius:16px;padding:28px;text-align:center}
+.cta-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#f8fafc;margin-bottom:8px}
+.cta-sub{font-size:14px;color:#64748b;line-height:1.6;margin-bottom:20px}
+.cta-btn{display:inline-block;background:#8b5cf6;color:#fff;font-family:'DM Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.05em;padding:13px 32px;border-radius:10px;text-decoration:none;transition:background .2s}
+.cta-btn:hover{background:#7c3aed}
+
+@media(max-width:580px){
+  .body,.hero-in{padding-left:16px;padding-right:16px}
+  .nav{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a class="nav-back" href="terms.html">← Terms &amp; Flashcards</a>
+  <div class="nav-title">Step 2 of 3</div>
+  <a class="nav-next" href="assessment.html">Take Assessment →</a>
+</div>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="eyebrow">Chapter 5 · Case Study</div>
+    <h1 class="hero-title">YETI Enters South Korea</h1>
+    <p class="hero-sub">A premium American brand. A high-context market. A headquarters team that thinks it knows best.</p>
+    <div class="chips">
+      <span class="chip">SRC</span>
+      <span class="chip">High / Low Context</span>
+      <span class="chip">Hofstede</span>
+      <span class="chip">Market Entry</span>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- Brand Background -->
+  <div class="context-box">
+    <div class="ctx-label">The Brand</div>
+    <div class="ctx-body">
+      <strong>YETI</strong> is a premium American outdoor lifestyle brand known for its high-end coolers, drinkware, and rugged <em>"built for the wild"</em> identity. Founded in Austin, Texas, YETI built its reputation on extreme durability, aspirational outdoor culture, and a loyal domestic following willing to pay a significant premium for product quality. The brand's identity centers on <strong>individual toughness, self-reliance, and conquering nature</strong> — values deeply rooted in American cultural mythology.
+      <br><br>
+      YETI is now planning its <strong>first direct market entry into South Korea</strong> — a high-context, collectivist society where consumer trust is built through relationships, group identity, and social proof rather than through product specs alone.
+    </div>
+  </div>
+
+  <!-- The Launch Plan -->
+  <div class="plan-head">The Austin Team's Launch Plan</div>
+  <div class="plan-items">
+    <div class="plan-item">
+      <div class="plan-num">01</div>
+      <div class="plan-item-body">
+        <div class="plan-item-title">Campaign Tagline</div>
+        <div class="plan-item-desc">Emphasizes individual achievement, solitude in nature, and personal toughness.</div>
+        <div class="plan-item-quote">"Be the one who goes further."</div>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">02</div>
+      <div class="plan-item-body">
+        <div class="plan-item-title">Communication Style</div>
+        <div class="plan-item-desc">Minimalist visuals, no celebrity endorsement, no explanatory copy.</div>
+        <div class="plan-item-quote">"The product speaks for itself."</div>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">03</div>
+      <div class="plan-item-body">
+        <div class="plan-item-title">Sales Channel</div>
+        <div class="plan-item-desc">Direct-to-consumer via a sleek e-commerce site. No retail partnerships, no physical presence.</div>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">04</div>
+      <div class="plan-item-body">
+        <div class="plan-item-title">Launch Timing</div>
+        <div class="plan-item-desc">Major campaign drop tied to a Friday release with a 48-hour flash sale window.</div>
+        <div class="plan-item-quote">"Create urgency."</div>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">05</div>
+      <div class="plan-item-body">
+        <div class="plan-item-title">Customer Service</div>
+        <div class="plan-item-desc">Fully automated chatbot. No human contact unless the customer escalates after three failed attempts.</div>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">06</div>
+      <div class="plan-item-body">
+        <div class="plan-item-title">Price Positioning</div>
+        <div class="plan-item-desc">Premium pricing with no justification of price in any marketing material.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Conflict -->
+  <div class="conflict">
+    <div class="conflict-label">⚠ The Conflict</div>
+    <div class="conflict-body">
+      The South Korea country manager — a Korean national with 10 years of in-market experience — reviewed the plan and flagged it as <strong style="color:#fbbf24">"likely to underperform."</strong> The Austin team overruled the recommendation, citing the belief that YETI's global brand identity should remain untouched across all markets.
+    </div>
+  </div>
+
+  <!-- Think About This -->
+  <div class="think">
+    <div class="think-label">Think About This Before the Assessment</div>
+    <div class="think-items">
+      <div class="think-item"><span class="think-q">→</span>Which decisions in this plan reflect American cultural assumptions being applied uncritically to a different market?</div>
+      <div class="think-item"><span class="think-q">→</span>South Korea is a high-context culture. Where does YETI's communication strategy assume a low-context audience?</div>
+      <div class="think-item"><span class="think-q">→</span>The country manager was overruled. What does that decision itself reveal about YETI's organizational culture?</div>
+      <div class="think-item"><span class="think-q">→</span>Using Hofstede's dimensions, which cultural mismatches carry the highest risk — and which single one would you fix first?</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta-title">Ready to Analyze?</div>
+    <div class="cta-sub">The assessment has three written parts graded instantly by AI. Use the frameworks you studied to diagnose YETI's mistakes and recommend changes.</div>
+    <a class="cta-btn" href="assessment.html">Begin Assessment →</a>
+  </div>
+
+</div>
+</body>
+</html>

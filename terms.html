@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Int'l Marketing · Chapter 5 — Key Terms &amp; Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;700&family=Playfair+Display:wght@900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#020817;color:#e2e8f0;font-family:'Source Serif 4',Georgia,serif;min-height:100vh}
+button{font-family:'DM Mono',monospace;cursor:pointer;border:none;transition:all .2s}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#0f172a}::-webkit-scrollbar-thumb{background:#1e293b;border-radius:3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes checkPop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes flipIn{from{opacity:0;transform:rotateY(-8deg) scale(.97)}to{opacity:1;transform:rotateY(0) scale(1)}}
+@keyframes pulseGreen{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}50%{box-shadow:0 0 0 8px rgba(34,197,94,.12)}}
+@keyframes pulseRed{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}50%{box-shadow:0 0 0 8px rgba(239,68,68,.12)}}
+
+/* ── PAGE SHELL ── */
+.pg{display:none;animation:fadeUp .35s ease}
+.pg.on{display:block}
+#pg-quiz.on{display:flex;flex-direction:column;min-height:100vh}
+
+/* ── SHARED HEADER ── */
+.site-head{background:linear-gradient(135deg,#0f172a,#0a1628);border-bottom:1px solid #1e293b;padding:22px 0;position:sticky;top:0;z-index:100}
+.site-head-in{max-width:860px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.head-left .eyebrow{font-family:'DM Mono',monospace;font-size:10px;color:#475569;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.head-left .head-title{font-family:'Playfair Display',serif;font-size:clamp(18px,4vw,24px);font-weight:900;color:#f8fafc}
+
+/* MODE TABS */
+.mode-tabs{display:flex;background:#0f172a;border:1px solid #1e293b;border-radius:9px;padding:3px;gap:3px}
+.tab{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;padding:7px 18px;border-radius:7px;color:#475569;background:transparent;transition:all .2s}
+.tab.active{background:#1e293b;color:#e2e8f0}
+.tab:hover:not(.active){color:#94a3b8}
+
+/* ── BROWSE PAGE ── */
+.browse-body{max-width:820px;margin:0 auto;padding:28px 28px 90px}
+.intro-box{background:#0c1a2e;border:1px solid #1e3a5f;border-radius:12px;padding:16px 20px;margin-bottom:28px;font-size:14px;color:#93c5fd;line-height:1.75}
+.intro-box strong{color:#60a5fa}
+.section{margin-bottom:32px}
+.section-header{margin-bottom:14px;padding-bottom:11px;border-bottom:1px solid #1e293b}
+.section-title{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.section-sub{font-size:12px;color:#475569;font-style:italic;margin-top:5px;letter-spacing:0;font-weight:400}
+.sec-src .section-title{color:#3b82f6}
+.sec-hall .section-title{color:#8b5cf6}
+.subsec-label{font-family:'DM Mono',monospace;font-size:9px;color:#334155;letter-spacing:.12em;text-transform:uppercase;margin:16px 0 9px;padding-left:2px}
+
+/* Term accordion cards */
+.term-card{background:#0f172a;border:1px solid #1e293b;border-radius:12px;margin-bottom:9px;overflow:hidden;cursor:pointer;transition:border-color .2s}
+.term-card:hover{border-color:#334155}
+.term-card.opened{border-color:#1e3a5f}
+.term-header{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;user-select:none;transition:background .2s}
+.term-card.opened .term-header{background:#0c1828}
+.term-name{font-size:15px;font-weight:600;color:#e2e8f0;display:flex;align-items:center;gap:10px}
+.term-check{width:18px;height:18px;border-radius:50%;border:1.5px solid #334155;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s;font-size:10px}
+.term-card.opened .term-check{background:#22c55e;border-color:#22c55e;color:#fff;animation:checkPop .3s ease}
+.term-arrow{color:#475569;font-size:13px;transition:transform .3s;flex-shrink:0}
+.term-card.opened .term-arrow{transform:rotate(180deg);color:#60a5fa}
+.term-body{display:none;padding:0 18px 15px;border-top:1px solid #1e293b}
+.term-body.show{display:block;animation:fadeUp .2s ease}
+.term-def{font-size:14px;color:#cbd5e1;line-height:1.85;padding-top:13px}
+.term-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-top:11px}
+.sec-src .term-card.opened{border-color:rgba(59,130,246,.3)}
+.sec-src .term-card.opened .term-header{background:rgba(59,130,246,.06)}
+.sec-src .term-tag{background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.2)}
+.sec-hall .term-card.opened{border-color:rgba(139,92,246,.3)}
+.sec-hall .term-card.opened .term-header{background:rgba(139,92,246,.06)}
+.sec-hall .term-tag{background:rgba(139,92,246,.12);color:#8b5cf6;border:1px solid rgba(139,92,246,.2)}
+
+/* Browse bottom bar */
+.browse-bar{position:fixed;bottom:0;left:0;right:0;background:#0a0f1e;border-top:1px solid #1e293b;padding:13px 28px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;z-index:200}
+.browse-bar-text{font-size:13px;color:#64748b;line-height:1.5}
+.browse-bar-text strong{color:#94a3b8}
+.done-msg{color:#22c55e;font-weight:600}
+.btn-expand{background:#1e293b;color:#94a3b8;border:1px solid #334155;border-radius:8px;padding:8px 18px;font-size:12px;font-weight:700}
+.btn-expand:hover{background:#334155;color:#e2e8f0}
+
+/* ── QUIZ PAGE ── */
+#pg-quiz{background:#020817}
+
+/* Quiz header bar */
+.quiz-head{background:#0a0f1e;border-bottom:1px solid #1e293b;padding:16px 28px}
+.quiz-head-in{max-width:700px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.quiz-counter{font-family:'DM Mono',monospace;font-size:12px;color:#475569;white-space:nowrap}
+.quiz-bar-outer{flex:1;height:6px;background:#1e293b;border-radius:3px;overflow:hidden}
+.quiz-bar-inner{height:100%;border-radius:3px;transition:width .4s ease}
+.quiz-score-wrap{display:flex;gap:14px;white-space:nowrap}
+.quiz-score{font-family:'DM Mono',monospace;font-size:12px;font-weight:700}
+.score-got{color:#22c55e}
+.score-miss{color:#ef4444}
+
+/* Quiz main */
+.quiz-main{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 20px}
+
+/* Flashcard */
+.flashcard{width:100%;max-width:640px;animation:flipIn .3s ease}
+.fc-tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:16px}
+.fc-tag.src{background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.2)}
+.fc-tag.hall{background:rgba(139,92,246,.12);color:#8b5cf6;border:1px solid rgba(139,92,246,.2)}
+
+.fc-card{background:#0f172a;border:1px solid #1e293b;border-radius:18px;padding:36px 36px 28px;position:relative;overflow:hidden}
+.fc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.fc-card.src::before{background:#3b82f6}
+.fc-card.hall::before{background:#8b5cf6}
+.fc-card.revealed{border-color:#1e3a5f}
+
+.fc-prompt{font-family:'DM Mono',monospace;font-size:10px;color:#475569;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.fc-term{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,32px);font-weight:900;color:#f8fafc;line-height:1.2;margin-bottom:28px}
+
+.fc-reveal-btn{width:100%;background:#1e293b;color:#94a3b8;border:1px solid #334155;border-radius:10px;padding:14px;font-size:13px;font-weight:700;letter-spacing:.04em}
+.fc-reveal-btn:hover{background:#334155;color:#e2e8f0}
+
+/* Definition reveal */
+.fc-def-wrap{display:none;animation:fadeUp .3s ease}
+.fc-def-wrap.show{display:block}
+.fc-divider{border:none;border-top:1px solid #1e293b;margin:0 0 20px}
+.fc-def{font-size:15px;color:#cbd5e1;line-height:1.85;margin-bottom:24px}
+
+/* Self-grade buttons */
+.grade-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-grade{border-radius:10px;padding:13px;font-size:13px;font-weight:700;letter-spacing:.03em;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-got{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.3)}
+.btn-got:hover{background:rgba(34,197,94,.22);animation:pulseGreen .8s ease}
+.btn-miss{background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.25)}
+.btn-miss{background:rgba(239,68,68,.1);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+.btn-miss:hover{background:rgba(239,68,68,.2);animation:pulseRed .8s ease}
+
+/* Hint */
+.fc-hint{font-family:'DM Mono',monospace;font-size:11px;color:#334155;text-align:center;margin-top:16px}
+
+/* ── RESULTS SCREEN ── */
+.results-wrap{width:100%;max-width:580px;animation:fadeUp .4s ease}
+.results-card{background:#0f172a;border:1px solid #1e293b;border-radius:18px;padding:36px;text-align:center}
+.results-icon{font-size:44px;margin-bottom:16px}
+.results-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#f8fafc;margin-bottom:8px}
+.results-sub{font-size:14px;color:#64748b;line-height:1.6;margin-bottom:28px}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.results-stat{background:#020817;border-radius:12px;padding:18px;border:1px solid #1e293b}
+.rs-val{font-family:'DM Mono',monospace;font-size:30px;font-weight:700;line-height:1;margin-bottom:4px}
+.rs-lbl{font-size:12px;color:#475569}
+.results-btns{display:flex;flex-direction:column;gap:10px}
+.btn-retry-missed{background:rgba(245,158,11,.1);color:#f59e0b;border:1px solid rgba(245,158,11,.25);border-radius:10px;padding:13px;font-size:13px;font-weight:700}
+.btn-retry-missed:hover{background:rgba(245,158,11,.2)}
+.btn-retry-all{background:#1e293b;color:#94a3b8;border:1px solid #334155;border-radius:10px;padding:13px;font-size:13px;font-weight:700}
+.btn-retry-all:hover{background:#334155;color:#e2e8f0}
+.btn-back-browse{background:transparent;color:#475569;border:none;font-size:12px;margin-top:6px;padding:8px}
+.btn-back-browse:hover{color:#94a3b8}
+
+/* Progress dots */
+.fc-dots{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto}
+.dot{width:10px;height:10px;border-radius:50%;background:#1e293b;transition:background .3s}
+.dot.got{background:#22c55e}
+.dot.miss{background:#ef4444}
+.dot.current{background:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.25)}
+
+@media(max-width:580px){
+  .browse-body,.quiz-head-in,.quiz-main{padding-left:16px;padding-right:16px}
+  .fc-card{padding:24px 20px 20px}
+  .grade-btns{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr}
+  .site-head-in{padding:0 16px}
+  .browse-bar{padding:13px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SHARED HEADER ══ -->
+<div class="site-head">
+  <div class="site-head-in">
+    <div class="head-left">
+      <a href="index.html" style="font-family:'DM Mono',monospace;font-size:11px;color:#475569;text-decoration:none;display:block;margin-bottom:4px;transition:color .2s" onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#475569'">← Home</a>
+      <div class="eyebrow">International Marketing · Chapter 5</div>
+      <div class="head-title">Key Terms &amp; Definitions</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+    <a href="case.html" style="font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:#f59e0b;text-decoration:none;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:8px 16px;transition:all .2s" onmouseover="this.style.background='rgba(245,158,11,.2)'" onmouseout="this.style.background='rgba(245,158,1,.1)'">Next: Read Case →</a>
+    <div class="mode-tabs">
+      <button class="tab active" id="tab-browse" onclick="switchMode('browse')">📖 Browse</button>
+      <button class="tab" id="tab-quiz" onclick="switchMode('quiz')">⚡ Quiz Me</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     BROWSE PAGE
+══════════════════════════════════════════ -->
+<div id="pg-browse" class="pg on">
+  <div class="browse-body">
+
+    <div class="intro-box">
+      <strong>YETI Enters South Korea — Ch. 5 Cultural Frameworks</strong><br>
+      Review all 14 key terms below. Click any term to reveal its definition. When you're ready to test yourself, switch to <strong>Quiz Me</strong> — terms will be randomized into a flashcard deck.
+    </div>
+
+    <!-- SRC Section -->
+    <div class="section sec-src">
+      <div class="section-header">
+        <div class="section-title">Self-Reference Criterion &amp; Cultural Bias</div>
+        <div class="section-sub">Concepts related to cultural blind spots in international marketing decisions</div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Self-Reference Criterion (SRC)</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">The unconscious tendency to interpret situations, behaviors, and business practices in other cultures using the values, experiences, and knowledge of one's own culture as the reference point. In international marketing, SRC leads managers to design campaigns and strategies that reflect their home market rather than the target market.</div>
+          <span class="term-tag">SRC &amp; Cultural Bias</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Cultural Bias</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">The tendency to judge another culture using the standards and assumptions of one's own culture, often leading to misunderstandings or incorrect conclusions. Cultural bias differs from SRC in that it can be conscious or unconscious — it is a broader pattern of evaluating foreign markets through a distorted lens.</div>
+          <span class="term-tag">SRC &amp; Cultural Bias</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Ethnocentrism</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">The belief that one's own culture, company, or way of doing business is superior to others, often resulting in resistance to adapting strategies for foreign markets. An ethnocentric company assumes that what works at home will work everywhere — and resists evidence to the contrary.</div>
+          <span class="term-tag">SRC &amp; Cultural Bias</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Cultural Projection</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">The assumption that people in another culture will respond to products, marketing messages, or business practices in the same way people do in one's own culture. Cultural projection is SRC in action — it produces marketing that speaks to the sender rather than the audience.</div>
+          <span class="term-tag">SRC &amp; Cultural Bias</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Institutional Ethnocentrism</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">A form of ethnocentrism embedded within organizations, where corporate policies, structures, and decision-making processes systematically favor the home-country perspective rather than local market realities. It is especially visible when headquarters overrules local managers who possess direct cultural knowledge.</div>
+          <span class="term-tag">SRC &amp; Cultural Bias</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Country Manager / Local Market Expertise</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">Managers based in a specific country who possess deep knowledge of the local culture, consumers, regulatory environment, and business practices, enabling them to adapt global strategies effectively to the local market. When headquarters overrules local expertise, it often signals institutional ethnocentrism at work.</div>
+          <span class="term-tag">SRC &amp; Cultural Bias</span>
+        </div>
+      </div>
+    </div><!-- end sec-src -->
+
+    <!-- Hall Section -->
+    <div class="section sec-hall">
+      <div class="section-header">
+        <div class="section-title">Hall's Cultural Framework</div>
+        <div class="section-sub">Developed by anthropologist Edward T. Hall — widely applied in international marketing communication and negotiation strategy</div>
+      </div>
+
+      <div class="subsec-label">Communication Context</div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>High-Context Culture</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">A culture in which communication relies heavily on implicit messages, shared experiences, nonverbal cues, and the surrounding context rather than explicit verbal statements. In high-context cultures — such as South Korea, Japan, and China — meaning is embedded in relationships and situations. Direct statements can feel blunt or even disrespectful.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Low-Context Culture</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">A culture in which communication is direct, explicit, and relies primarily on clearly stated verbal or written information rather than contextual cues. Low-context cultures — such as the United States, Germany, and Scandinavia — value clarity, brevity, and information delivered straight. "The product speaks for itself" is a distinctly low-context idea.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Explicit Communication</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">Communication in which the meaning is clearly expressed through direct language, detailed explanations, and precise wording. Explicit communication leaves little room for interpretation — it is the dominant mode in low-context cultures and underpins advertising that leads with product features, pricing, and clear calls to action.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Implicit Communication</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">Communication in which much of the meaning is conveyed indirectly through tone, body language, relationships, or situational context rather than direct statements. In high-context cultures, what is not said — the pause, the omission, the gesture — often carries as much meaning as the words themselves.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Relational Trust</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">Trust that develops through long-term relationships, personal interactions, and mutual understanding rather than through formal contracts or institutional guarantees. In high-context cultures, relational trust is a prerequisite for doing business — brands that skip the relationship-building phase often find that technically superior products fail to gain adoption.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+      <div class="subsec-label">Time Orientation</div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Monochronic Time</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">A cultural orientation toward time in which activities are scheduled sequentially, punctuality is emphasized, and tasks are handled one at a time. Monochronic cultures treat time as a finite resource — deadlines are commitments, meetings start on schedule, and efficiency is a virtue. The United States and most of Northern Europe are monochronic.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Polychronic Time</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">A cultural orientation toward time in which multiple activities may occur simultaneously, schedules are flexible, and relationships often take priority over strict adherence to time. In polychronic cultures, being interrupted for a conversation is natural — it reflects the prioritization of people over schedules.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+      <div class="subsec-label">Context-Sensitive Communication</div>
+
+      <div class="term-card" onclick="openTerm(this)">
+        <div class="term-header">
+          <div class="term-name"><span class="term-check"></span>Context-Sensitive Communication</div>
+          <span class="term-arrow">▾</span>
+        </div>
+        <div class="term-body">
+          <div class="term-def">A style of communication in which understanding depends heavily on situational factors such as relationships, status, environment, and nonverbal cues, rather than solely on the words spoken. Effective international marketers develop the ability to read and adapt to contextual signals — recognizing that the same message can land very differently across cultures depending on who delivers it, how, and in what setting.</div>
+          <span class="term-tag">Hall's Framework</span>
+        </div>
+      </div>
+
+    </div><!-- end sec-hall -->
+  </div><!-- end browse-body -->
+
+  <!-- Browse bottom bar -->
+  <div class="browse-bar">
+    <div class="browse-bar-text">
+      <strong id="browse-count">Click each term to review it.</strong><br>
+      <span id="browse-sub">Progress bar tracks your review.</span>
+    </div>
+    <button class="btn-expand" id="btn-expand" onclick="expandAll()">Expand All</button>
+  </div>
+</div><!-- end pg-browse -->
+
+<!-- ══════════════════════════════════════════
+     QUIZ PAGE
+══════════════════════════════════════════ -->
+<div id="pg-quiz" class="pg">
+
+  <!-- Quiz progress bar header -->
+  <div class="quiz-head">
+    <div class="quiz-head-in">
+      <div class="quiz-counter" id="quiz-counter">1 / 14</div>
+      <div class="quiz-bar-outer">
+        <div class="quiz-bar-inner" id="quiz-bar" style="width:0%"></div>
+      </div>
+      <div class="quiz-score-wrap">
+        <span class="quiz-score score-got" id="q-got">✓ 0</span>
+        <span class="quiz-score score-miss" id="q-miss">✗ 0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flashcard area -->
+  <div class="quiz-main" id="quiz-main">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- Progress dots -->
+  <div class="fc-dots" id="fc-dots"></div>
+  <div style="height:32px"></div>
+
+</div><!-- end pg-quiz -->
+
+
+<script>
+// ── TERM DATA ────────────────────────────────────────────────────────────────
+const TERMS = [
+  { term: "Self-Reference Criterion (SRC)", section: "src",
+    def: "The unconscious tendency to interpret situations, behaviors, and business practices in other cultures using the values, experiences, and knowledge of one's own culture as the reference point. In international marketing, SRC leads managers to design campaigns and strategies that reflect their home market rather than the target market.",
+    tag: "SRC & Cultural Bias" },
+  { term: "Cultural Bias", section: "src",
+    def: "The tendency to judge another culture using the standards and assumptions of one's own culture, often leading to misunderstandings or incorrect conclusions. Cultural bias differs from SRC in that it can be conscious or unconscious — it is a broader pattern of evaluating foreign markets through a distorted lens.",
+    tag: "SRC & Cultural Bias" },
+  { term: "Ethnocentrism", section: "src",
+    def: "The belief that one's own culture, company, or way of doing business is superior to others, often resulting in resistance to adapting strategies for foreign markets. An ethnocentric company assumes that what works at home will work everywhere — and resists evidence to the contrary.",
+    tag: "SRC & Cultural Bias" },
+  { term: "Cultural Projection", section: "src",
+    def: "The assumption that people in another culture will respond to products, marketing messages, or business practices in the same way people do in one's own culture. Cultural projection is SRC in action — it produces marketing that speaks to the sender rather than the audience.",
+    tag: "SRC & Cultural Bias" },
+  { term: "Institutional Ethnocentrism", section: "src",
+    def: "A form of ethnocentrism embedded within organizations, where corporate policies, structures, and decision-making processes systematically favor the home-country perspective rather than local market realities. It is especially visible when headquarters overrules local managers who possess direct cultural knowledge.",
+    tag: "SRC & Cultural Bias" },
+  { term: "Country Manager / Local Market Expertise", section: "src",
+    def: "Managers based in a specific country who possess deep knowledge of the local culture, consumers, regulatory environment, and business practices, enabling them to adapt global strategies effectively to the local market. When headquarters overrules local expertise, it often signals institutional ethnocentrism at work.",
+    tag: "SRC & Cultural Bias" },
+  { term: "High-Context Culture", section: "hall",
+    def: "A culture in which communication relies heavily on implicit messages, shared experiences, nonverbal cues, and the surrounding context rather than explicit verbal statements. In high-context cultures — such as South Korea, Japan, and China — meaning is embedded in relationships and situations. Direct statements can feel blunt or even disrespectful.",
+    tag: "Hall's Framework" },
+  { term: "Low-Context Culture", section: "hall",
+    def: "A culture in which communication is direct, explicit, and relies primarily on clearly stated verbal or written information rather than contextual cues. Low-context cultures — such as the United States, Germany, and Scandinavia — value clarity, brevity, and information delivered straight. \"The product speaks for itself\" is a distinctly low-context idea.",
+    tag: "Hall's Framework" },
+  { term: "Explicit Communication", section: "hall",
+    def: "Communication in which the meaning is clearly expressed through direct language, detailed explanations, and precise wording. Explicit communication leaves little room for interpretation — it is the dominant mode in low-context cultures and underpins advertising that leads with product features, pricing, and clear calls to action.",
+    tag: "Hall's Framework" },
+  { term: "Implicit Communication", section: "hall",
+    def: "Communication in which much of the meaning is conveyed indirectly through tone, body language, relationships, or situational context rather than direct statements. In high-context cultures, what is not said — the pause, the omission, the gesture — often carries as much meaning as the words themselves.",
+    tag: "Hall's Framework" },
+  { term: "Relational Trust", section: "hall",
+    def: "Trust that develops through long-term relationships, personal interactions, and mutual understanding rather than through formal contracts or institutional guarantees. In high-context cultures, relational trust is a prerequisite for doing business — brands that skip the relationship-building phase often find that technically superior products fail to gain adoption.",
+    tag: "Hall's Framework" },
+  { term: "Monochronic Time", section: "hall",
+    def: "A cultural orientation toward time in which activities are scheduled sequentially, punctuality is emphasized, and tasks are handled one at a time. Monochronic cultures treat time as a finite resource — deadlines are commitments, meetings start on schedule, and efficiency is a virtue. The United States and most of Northern Europe are monochronic.",
+    tag: "Hall's Framework" },
+  { term: "Polychronic Time", section: "hall",
+    def: "A cultural orientation toward time in which multiple activities may occur simultaneously, schedules are flexible, and relationships often take priority over strict adherence to time. In polychronic cultures, being interrupted for a conversation is natural — it reflects the prioritization of people over schedules.",
+    tag: "Hall's Framework" },
+  { term: "Context-Sensitive Communication", section: "hall",
+    def: "A style of communication in which understanding depends heavily on situational factors such as relationships, status, environment, and nonverbal cues, rather than solely on the words spoken. Effective international marketers develop the ability to read and adapt to contextual signals — recognizing that the same message can land very differently across cultures depending on who delivers it, how, and in what setting.",
+    tag: "Hall's Framework" }
+];
+
+// ── BROWSE STATE ─────────────────────────────────────────────────────────────
+const TOTAL = TERMS.length;
+let browseOpened = new Set();
+let allExpanded = false;
+
+function openTerm(card) {
+  const body = card.querySelector('.term-body');
+  const isOpen = body.classList.contains('show');
+  document.querySelectorAll('.term-body.show').forEach(b => b.classList.remove('show'));
+  document.querySelectorAll('.term-arrow').forEach(a => { a.style.transform=''; a.style.color=''; });
+  if (!isOpen) {
+    body.classList.add('show');
+    const arrow = card.querySelector('.term-arrow');
+    arrow.style.transform = 'rotate(180deg)';
+    arrow.style.color = '#60a5fa';
+  }
+  if (!card.classList.contains('opened')) {
+    card.classList.add('opened');
+    browseOpened.add(card);
+    updateBrowseProgress();
+  }
+}
+
+function updateBrowseProgress() {
+  const c = browseOpened.size;
+  const rem = TOTAL - c;
+  if (c >= TOTAL) {
+    document.getElementById('browse-count').innerHTML = '<span class="done-msg">✓ All 14 terms reviewed.</span>';
+    document.getElementById('browse-sub').textContent = '';
+  } else {
+    document.getElementById('browse-count').textContent = `${rem} term${rem!==1?'s':''} remaining.`;
+  }
+}
+
+function expandAll() {
+  const btn = document.getElementById('btn-expand');
+  const cards = document.querySelectorAll('.term-card');
+  if (!allExpanded) {
+    cards.forEach(card => {
+      card.querySelector('.term-body').classList.add('show');
+      const arrow = card.querySelector('.term-arrow');
+      arrow.style.transform = 'rotate(180deg)';
+      arrow.style.color = '#60a5fa';
+      if (!card.classList.contains('opened')) { card.classList.add('opened'); browseOpened.add(card); }
+    });
+    updateBrowseProgress();
+    btn.textContent = 'Collapse All';
+    allExpanded = true;
+  } else {
+    cards.forEach(card => {
+      card.querySelector('.term-body').classList.remove('show');
+      card.querySelector('.term-arrow').style.transform = '';
+      card.querySelector('.term-arrow').style.color = '';
+    });
+    btn.textContent = 'Expand All';
+    allExpanded = false;
+  }
+}
+
+// ── QUIZ STATE ────────────────────────────────────────────────────────────────
+let deck = [];
+let quizIdx = 0;
+let gotCount = 0;
+let missCount = 0;
+let results = []; // 'got' | 'miss' | null per card
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz(termSubset) {
+  deck = shuffle(termSubset);
+  quizIdx = 0;
+  gotCount = 0;
+  missCount = 0;
+  results = new Array(deck.length).fill(null);
+  renderCard();
+  renderDots();
+}
+
+function renderCard() {
+  const main = document.getElementById('quiz-main');
+  if (quizIdx >= deck.length) { showResults(); return; }
+  const t = deck[quizIdx];
+  const sectionClass = t.section;
+  const tagClass = t.section === 'src' ? 'src' : 'hall';
+  const pct = Math.round((quizIdx / deck.length) * 100);
+  const barColor = sectionClass === 'src' ? '#3b82f6' : '#8b5cf6';
+
+  document.getElementById('quiz-counter').textContent = `${quizIdx + 1} / ${deck.length}`;
+  document.getElementById('quiz-bar').style.width = pct + '%';
+  document.getElementById('quiz-bar').style.background = barColor;
+  document.getElementById('q-got').textContent = `✓ ${gotCount}`;
+  document.getElementById('q-miss').textContent = `✗ ${missCount}`;
+
+  main.innerHTML = `
+    <div class="flashcard">
+      <div style="text-align:center">
+        <span class="fc-tag ${tagClass}">${t.tag}</span>
+      </div>
+      <div class="fc-card ${sectionClass}" id="fc-card">
+        <div class="fc-prompt">What is the definition of…</div>
+        <div class="fc-term">${t.term}</div>
+        <button class="fc-reveal-btn" id="reveal-btn" onclick="revealDef()">Reveal Definition ▾</button>
+        <div class="fc-def-wrap" id="def-wrap">
+          <hr class="fc-divider" style="margin-top:20px">
+          <div class="fc-def">${t.def}</div>
+          <div class="grade-btns">
+            <button class="btn-grade btn-got" onclick="grade('got')">✓ Got it</button>
+            <button class="btn-grade btn-miss" onclick="grade('miss')">✗ Still learning</button>
+          </div>
+        </div>
+      </div>
+      <div class="fc-hint" id="fc-hint">Click to reveal — be honest with yourself</div>
+    </div>`;
+}
+
+function revealDef() {
+  document.getElementById('def-wrap').classList.add('show');
+  document.getElementById('reveal-btn').style.display = 'none';
+  document.getElementById('fc-hint').textContent = 'How well did you know this?';
+  document.getElementById('fc-card').classList.add('revealed');
+}
+
+function grade(result) {
+  results[quizIdx] = result;
+  if (result === 'got') gotCount++;
+  else missCount++;
+  quizIdx++;
+  renderDots();
+  renderCard();
+}
+
+function renderDots() {
+  const wrap = document.getElementById('fc-dots');
+  wrap.innerHTML = results.map((r, i) => {
+    let cls = 'dot';
+    if (i === quizIdx) cls += ' current';
+    else if (r === 'got') cls += ' got';
+    else if (r === 'miss') cls += ' miss';
+    return `<div class="${cls}"></div>`;
+  }).join('');
+}
+
+function showResults() {
+  document.getElementById('quiz-counter').textContent = `${deck.length} / ${deck.length}`;
+  document.getElementById('quiz-bar').style.width = '100%';
+  document.getElementById('q-got').textContent = `✓ ${gotCount}`;
+  document.getElementById('q-miss').textContent = `✗ ${missCount}`;
+  document.getElementById('fc-dots').innerHTML = results.map(r => {
+    return `<div class="dot ${r === 'got' ? 'got' : 'miss'}"></div>`;
+  }).join('');
+
+  const pct = Math.round((gotCount / deck.length) * 100);
+  const icon = pct === 100 ? '🏆' : pct >= 70 ? '✅' : pct >= 40 ? '📖' : '💪';
+  const title = pct === 100 ? 'Perfect Round!' : pct >= 70 ? 'Solid Work' : pct >= 40 ? 'Keep Practicing' : 'Keep At It';
+  const sub = pct === 100
+    ? 'You nailed every term. Try reshuffling to confirm it sticks.'
+    : missCount > 0
+    ? `You missed ${missCount} term${missCount!==1?'s':''}. Review them or retry just those cards.`
+    : 'All done with this deck.';
+
+  const missedTerms = deck.filter((_, i) => results[i] === 'miss');
+
+  document.getElementById('quiz-main').innerHTML = `
+    <div class="results-wrap">
+      <div class="results-card">
+        <div class="results-icon">${icon}</div>
+        <div class="results-title">${title}</div>
+        <div class="results-sub">${sub}</div>
+        <div class="results-grid">
+          <div class="results-stat">
+            <div class="rs-val" style="color:#22c55e">${gotCount}</div>
+            <div class="rs-lbl">Got it</div>
+          </div>
+          <div class="results-stat">
+            <div class="rs-val" style="color:#ef4444">${missCount}</div>
+            <div class="rs-lbl">Still learning</div>
+          </div>
+          <div class="results-stat">
+            <div class="rs-val" style="color:#3b82f6">${pct}%</div>
+            <div class="rs-lbl">Score</div>
+          </div>
+          <div class="results-stat">
+            <div class="rs-val" style="color:#64748b">${deck.length}</div>
+            <div class="rs-lbl">Cards in round</div>
+          </div>
+        </div>
+        <div class="results-btns">
+          ${missedTerms.length > 0 ? `<button class="btn-retry-missed" onclick="retryMissed()">⚡ Retry ${missedTerms.length} Missed Term${missedTerms.length!==1?'s':''}</button>` : ''}
+          <button class="btn-retry-all" onclick="startQuiz(TERMS)">↺ Reshuffle All 14 Terms</button>
+          <button class="btn-back-browse" onclick="switchMode('browse')">← Back to Browse</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function retryMissed() {
+  const missed = deck.filter((_, i) => results[i] === 'miss');
+  document.getElementById('fc-dots').innerHTML = new Array(missed.length).fill('<div class="dot"></div>').join('');
+  startQuiz(missed);
+}
+
+// ── MODE SWITCH ───────────────────────────────────────────────────────────────
+function switchMode(mode) {
+  document.getElementById('pg-browse').classList.remove('on');
+  document.getElementById('pg-quiz').classList.remove('on');
+  document.getElementById('tab-browse').classList.remove('active');
+  document.getElementById('tab-quiz').classList.remove('active');
+
+  if (mode === 'browse') {
+    document.getElementById('pg-browse').classList.add('on');
+    document.getElementById('tab-browse').classList.add('active');
+  } else {
+    document.getElementById('pg-quiz').classList.add('on');
+    document.getElementById('tab-quiz').classList.add('active');
+    startQuiz(TERMS);
+  }
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

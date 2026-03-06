@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Int'l Marketing · Chapter 5</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;700&family=Playfair+Display:wght@900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#020817;color:#e2e8f0;font-family:'Source Serif 4',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.wrap{max-width:560px;width:100%;animation:fadeUp .4s ease}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;color:#475569;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;text-align:center}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,7vw,44px);font-weight:900;color:#f8fafc;line-height:1.1;text-align:center;margin-bottom:10px}
+.sub{font-size:14px;color:#64748b;text-align:center;line-height:1.7;margin-bottom:40px}
+.steps{display:flex;flex-direction:column;gap:14px}
+.step{display:flex;align-items:center;gap:20px;background:#0f172a;border:1px solid #1e293b;border-radius:16px;padding:22px 24px;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s}
+.step:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.step-1:hover{border-color:rgba(59,130,246,.4)}
+.step-2:hover{border-color:rgba(245,158,11,.35)}
+.step-3:hover{border-color:rgba(139,92,246,.4)}
+.step-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;min-width:22px;padding-top:2px}
+.step-1 .step-num{color:#3b82f6}
+.step-2 .step-num{color:#f59e0b}
+.step-3 .step-num{color:#8b5cf6}
+.step-icon{font-size:26px;flex-shrink:0}
+.step-text{flex:1}
+.step-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.step-1 .step-label{color:#3b82f6}
+.step-2 .step-label{color:#f59e0b}
+.step-3 .step-label{color:#8b5cf6}
+.step-title{font-size:16px;font-weight:600;color:#f1f5f9;margin-bottom:3px}
+.step-desc{font-size:13px;color:#64748b;line-height:1.5}
+.step-arrow{color:#334155;font-size:18px;flex-shrink:0}
+.step:hover .step-arrow{color:#94a3b8}
+.divider{border:none;border-top:1px solid #0f172a;margin:6px 0}
+.footer{text-align:center;margin-top:32px;font-family:'DM Mono',monospace;font-size:10px;color:#1e293b;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">International Marketing · Chapter 5</div>
+  <h1>YETI Enters South Korea</h1>
+  <p class="sub">Cultural frameworks in action — SRC · Hall's Context · Hofstede<br>Follow the three steps below in order.</p>
+
+  <div class="steps">
+    <a class="step step-1" href="terms.html">
+      <div class="step-num">01</div>
+      <div class="step-icon">📖</div>
+      <div class="step-text">
+        <div class="step-label">Study First</div>
+        <div class="step-title">Key Terms &amp; Flashcards</div>
+        <div class="step-desc">Review all 14 terms across SRC and Hall's Framework, then quiz yourself with randomized flashcards.</div>
+      </div>
+      <div class="step-arrow">→</div>
+    </a>
+
+    <a class="step step-2" href="case.html">
+      <div class="step-num">02</div>
+      <div class="step-icon">📋</div>
+      <div class="step-text">
+        <div class="step-label">Read the Case</div>
+        <div class="step-title">The YETI Launch Plan</div>
+        <div class="step-desc">Read the South Korea market entry scenario and identify the cultural decisions before you analyze them.</div>
+      </div>
+      <div class="step-arrow">→</div>
+    </a>
+
+    <a class="step step-3" href="assessment.html">
+      <div class="step-num">03</div>
+      <div class="step-icon">⚡</div>
+      <div class="step-text">
+        <div class="step-label">Apply &amp; Submit</div>
+        <div class="step-title">Cultural Assessment</div>
+        <div class="step-desc">Three written parts graded by AI — SRC diagnosis, Hall's Context analysis, and Hofstede evaluation.</div>
+      </div>
+      <div class="step-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="footer">Int'l Marketing · Ch. 5 · Cultural Frameworks</div>
+</div>
+</body>
+</html>
